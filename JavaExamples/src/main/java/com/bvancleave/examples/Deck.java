@@ -25,7 +25,7 @@ public class Deck {
 		}
 	}
 	
-	public Card getCard( int rank, int suit ) throws IllegalArgumentException {
+	public Card getCard( int rank, int suit ) {
 		if ( ! Card.CardBuilder.isValidRank(rank) ) {
 			throw new IllegalArgumentException("Invalid Rank");
 		}
