@@ -1,5 +1,7 @@
 package com.bvancleave.examples;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * 
  * @author Bradley Van Cleave
@@ -35,5 +37,15 @@ public class Deck {
 		}
 		
 		return cards[suit][rank-1];
+	}
+	
+	public static void main( String[] args ) {
+		Deck deck = new Deck();
+		for ( int suit = Suit.CLUBS; suit <= Suit.SPADES; suit++ ) {
+			for ( int rank = Rank.ACE; rank <= Rank.KING; rank++ ) {
+				Card card = deck.getCard(rank, suit);
+				System.out.println( card );
+			}
+		}
 	}
 }
