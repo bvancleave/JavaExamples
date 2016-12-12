@@ -23,6 +23,21 @@ public class DeckTest {
 		assertEquals( card, deck.getCard(Rank.ACE, Suit.CLUBS) );
 	}
 	
+	@Test
+	public void testDeck() {
+		Deck deck = new Deck();
+		for ( int suit = Suit.CLUBS; suit <= Suit.SPADES; suit++ ) {
+			for ( int rank = Rank.ACE; rank <= Rank.KING; rank++ ) {
+				Card actual = deck.getCard(rank, suit);
+				Card expected = new Card.CardBuilder()
+									.withRank(rank)
+									.withSuit(suit)
+									.build();
+				assertEquals( expected, actual );
+			}
+		}
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void testException() {
 		Deck deck = new Deck();
