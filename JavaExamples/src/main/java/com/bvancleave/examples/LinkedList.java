@@ -47,23 +47,60 @@ public class LinkedList<T> {
 	}
 	
 	/**
+	 * This method inserts the node before the ith node in the linked list.
+	 * If the ith node doesn't exist, then ElementNotFoundException is thrown.
+	 * 
+	 * @param element
+	 * @param index
+	 * @throws ElementNotFoundException
+	 */
+	public void addBefore( T element, int index ) throws ElementNotFoundException {
+		if ( index == 0 ) {
+			add( element );
+			
+			return;
+		} else {
+			int counter = 0;
+			
+			Node<T> node = new Node<T>();
+			node.data = element;
+			node.next = null;
+
+			Node<T> pointer = head;
+			Node<T> previous = head;
+			while( pointer != null ) {
+				if ( counter == index ) {
+					node.next = pointer;
+					previous.next = node;
+					size++;
+
+					return;
+				}
+
+				counter++;
+			}
+		}		
+		
+		throw new ElementNotFoundException();
+	}
+	
+	/**
 	 * This method inserts an element after the node that refers to the head of
 	 * the linked list.
 	 * 
 	 * @param element
 	 */
 	public void addAfter( T element ) {
-		Node<T> node = new Node<T>();
-		node.data = element;
-		node.next = null;
-		
 		if (head != null) {
+			Node<T> node = new Node<T>();
+			node.data = element;
+			node.next = null;
+			
 			node.next = head.next;
 			head.next = node;
 			size++;
 		} else {
-			head = node;
-			size++;
+			add( element );
 		}
 	}
 	
@@ -73,13 +110,13 @@ public class LinkedList<T> {
 	 * @param element
 	 */
 	public void addLast( T element ) {
-		Node<T> node = new Node<T>();
-		node.data = element;
-		node.next = null;
-		
 		if ( head == null || head.next == null ) {
 			addAfter( element );
 		} else {
+			Node<T> node = new Node<T>();
+			node.data = element;
+			node.next = null;
+			
 			Node<T> pointer = head;
 			while( pointer.next != null ) {
 				pointer = pointer.next;

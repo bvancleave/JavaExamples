@@ -35,6 +35,23 @@ public class LinkedListTest {
 	}
 	
 	@Test
+	public void testAddBefore_ThenGet() throws ElementNotFoundException {
+		assertNotNull(list);
+		assertThat(list.size(), is(0));
+		
+		list.addBefore(10, 0);
+		
+		assertThat(list.get(0),is(10));
+		assertThat(list.size(), is(1));
+		
+		list.addBefore(5, 1);
+		
+		assertThat(list.get(0),is(10));
+		assertThat(list.get(1),is(5));
+		assertThat(list.size(), is(2));
+	}
+	
+	@Test
 	public void testAddAfterNonEmpty_ThenGet() throws ElementNotFoundException {
 		Integer data = new Integer(10);
 		list.add(data);
@@ -60,10 +77,11 @@ public class LinkedListTest {
 	}
 	
 	@Test
-	public void testAddLastNonEmpty_ThenGet() throws ElementNotFoundException {
+	public void testAddLast_ThenGet() throws ElementNotFoundException {
 		assertNotNull(list);
 		assertThat(list.size(), is(0));
 		
+		/* empty list test */
 		list.addLast(10);
 		assertThat(list.size(), is(1));
 		assertThat(list.get(0),is(10));
@@ -72,7 +90,7 @@ public class LinkedListTest {
 		assertThat(list.size(), is(2));
 		assertThat(list.get(1),is(5));
 	}
-
+	
 	@Test
 	public void testSetAfterTrue_ThenGet() throws ElementNotFoundException {
 		Integer ten = new Integer(10);
